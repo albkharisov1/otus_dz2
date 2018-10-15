@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+*.cmake
+Makefile
+CMakeFiles
+CMakeCache.txt
+ip_filter
+test_version
