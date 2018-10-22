@@ -4,10 +4,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-
-using ip_pool_t = std::vector<std::vector<std::string>>;
-
-#define IPV4_PARTS      4
+#include "ip_filter.h"
 
 template <typename... Args>
 auto filter(const ip_pool_t &ip_pool, Args... args)
