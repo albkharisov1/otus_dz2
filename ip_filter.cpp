@@ -15,17 +15,25 @@ auto filter(const ip_pool_t &ip_pool, Args... args)
     ip_pool_t ipf;  // filtered
     for (auto ip : ip_pool)
     {
+        std::cout << "ip:" << ip[0] << "." << ip[1] << "." << ip[2] << "." << ip[3] << std::endl;
         bool rc = true;
+        int b = 0;
         for (auto j : a)
         {
-            if (ip[j] != std::to_string(a[j]))
+            std::cout << "    ip[j]:" << ip[b] << " | " << std::to_string(j) << std::endl;
+            if (ip[b] != std::to_string(j))
             {
                 rc = false;
                 break;
             }
+            if (++b > 4)
+                break;
         }
         if (rc)
+        {
+            std::cout << "success" << std::endl;
             ipf.push_back(ip);
+        }
     }
 
     return ipf;
@@ -101,6 +109,8 @@ int main(int argc, char const *argv[])
         std::cout << "sort" << std::endl;
 
         auto ipfiltered = filter(ip_pool, 1);
+        printIpPool(ipfiltered);
+        ipfiltered = filter(ip_pool, 46, 70);
         printIpPool(ipfiltered);
 //        ipfiltered = filter(ip_pool, 46, 70);        // std::move implicitly
 //        auto ip4670 = filter_any(ip_pool, 46);
