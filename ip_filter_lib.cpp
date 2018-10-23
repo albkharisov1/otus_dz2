@@ -4,7 +4,7 @@
 #include <algorithm>
 #include "ip_filter.h"
 
-auto filter_any(const ip_pool_t &ip_pool, unsigned char num)
+ip_pool_t filter_any(const ip_pool_t &ip_pool, unsigned char num)
 {
     ip_pool_t ipf;  // filtered
     for (auto ip : ip_pool)
@@ -22,7 +22,7 @@ auto filter_any(const ip_pool_t &ip_pool, unsigned char num)
 }
 
 template <typename... Args>
-auto filter(const ip_pool_t &ip_pool, Args... args)
+ip_pool_t filter(const ip_pool_t &ip_pool, Args... args)
 {
     const int a[] = {args...};
 
