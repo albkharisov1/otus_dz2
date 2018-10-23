@@ -27,7 +27,7 @@ target_link_libraries(ip_filter
 
 target_link_libraries(filter_test
     ${Boost_LIBRARIES}
-    ip_filter_lib
+#    ip_filter_lib
 )
 
 install(TARGETS ip_filter RUNTIME DESTINATION bin)

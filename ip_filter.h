@@ -13,6 +13,5 @@ using ip_pool_t = std::vector<ip_t>;
 #define IPV4_PARTS      4
 
 template <typename... Args>
-//auto filter(const ip_pool_t &ip_pool, Args... args);
-ip_pool_t filter(const ip_pool_t &ip_pool, Args... args);
-
+auto filter(const ip_pool_t &ip_pool, Args... args);
+auto filter_any(const ip_pool_t &ip_pool, unsigned char num);
