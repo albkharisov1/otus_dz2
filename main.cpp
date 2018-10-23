@@ -66,22 +66,16 @@ int main(int argc, char const *argv[])
             ip_pool.push_back(split(v.at(0), '.'));
         }
 
-//        printIpPool(ip_pool);
         // TODO reverse lexicographically sort
         std::sort(ip_pool.rbegin(), ip_pool.rend());
         printIpPool(ip_pool);
-        std::cout << "sort" << std::endl;
 
-        std::cout << "    filter:1:" << std::endl;
         auto ipfiltered = filter(ip_pool, 1);
         printIpPool(ipfiltered);
-        std::cout << "    filter:46.70:" << std::endl;
         ipfiltered = filter(ip_pool, 46, 70);       // std::move implicitly, do we need to overload?
         printIpPool(ipfiltered);
-        std::cout << "    filter_any:46:" << std::endl;
         ipfiltered = filter_any(ip_pool, 46);       // std::move implicitly
         printIpPool(ipfiltered);
-
     }
     catch(const std::exception &e)
     {
