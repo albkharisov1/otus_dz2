@@ -7,7 +7,7 @@
 #include "ip_filter.h"
 
 template <typename... Args>
-auto filter(const ip_pool_t &ip_pool, Args... args)
+ip_pool_t filter(const ip_pool_t &ip_pool, Args... args)
 {
     const int a[] = {args...};
 
