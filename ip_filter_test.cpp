@@ -67,6 +67,7 @@ BOOST_AUTO_TEST_CASE(test_logic)
     BOOST_CHECK(ipf.size() == 0);
 
 
+    // assert fails here
 //    ipf = filter(ip_pool, 0, 70, 17, 1, 0);
 //    BOOST_CHECK(ipf.size() == 1);
 //

@@ -33,7 +33,7 @@ template <typename... Args>
 ip_pool_t filter(const ip_pool_t &ip_pool, Args... args)
 {
     const int a[] = {args...};
-    static_assert(sizeof...(Args) <= 4);
+    static_assert(sizeof...(Args) <= 4, "filter gets 4 parameters max + ip_pool");
 
     ip_pool_t ipf;  // filtered
     for (auto ip : ip_pool)
