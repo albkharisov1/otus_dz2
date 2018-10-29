@@ -31,7 +31,7 @@ auto split(const std::string &str, char d)
     return r;
 }
 
-void printIp(const std::vector<std::string> &ip)
+void printIp(const ip_t &ip)
 {
     for(auto ip_part = ip.cbegin(); ip_part != ip.cend(); ++ip_part)
     {
@@ -51,6 +51,12 @@ void printIpPool(const ip_pool_t &v)
         std::cout << std::endl;
     }
 }
+
+auto sort(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end)
+{
+
+}
+
 
 int main(int argc, char const *argv[])
 {
