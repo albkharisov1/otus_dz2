@@ -15,19 +15,11 @@ ip_pool_t filter_any(const ip_pool_t &ip_pool, unsigned char num)
     ip_pool_t ipf;  // filtered
     for (auto ip : ip_pool)
     {
-//        for (int i = 0 ; i < 4 ; ++i)
-//        {
-//            if (ip[i] == std::to_string(num))
-        if (std::any_of(ip.cbegin(), ip.cend(), [num](std::string s)
-                    {
-                        std::cout << "   " << std::endl;
-                        return std::stoi(s) == num;
-                    } ))
+        if (std::any_of(ip.cbegin(), ip.cend(), [num](const std::string &s)
+                    { return std::stoi(s) == num; } ))
         {
             ipf.push_back(ip);
-            break;
         }
-//        }
     }
     return ipf;
 }
@@ -41,20 +33,16 @@ ip_pool_t filter(const ip_pool_t &ip_pool, Args... args)
     ip_pool_t ipf;  // filtered
     for (auto ip : ip_pool)
     {
-//        std::cout << "ip:" << ip[0] << "." << ip[1] << "." << ip[2] << "." << ip[3] << std::endl;
         bool rc = true;
         int b = 0;
         for (auto j : a)
         {
-//            std::cout << "    ip[j]:" << ip[b] << " | " << std::to_string(j) << std::endl;
-//            if (ip[b] != std::to_string(j))
             if (std::stoi(ip[b]) != j)
             {
                 rc = false;
                 break;
             }
-//            if (++b > IPV4_PARTS)
-//                break;
+            ++b;
         }
         if (rc)
             ipf.push_back(ip);

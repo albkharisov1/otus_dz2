@@ -31,23 +31,16 @@ auto split(const std::string &str, char d)
     return r;
 }
 
-void printIp(const ip_t &ip)
-{
-    for(auto ip_part = ip.cbegin(); ip_part != ip.cend(); ++ip_part)
-    {
-        if (ip_part != ip.cbegin())
-        {
-            std::cout << ".";
-        }
-        std::cout << *ip_part;
-    }
-}
-
 void printIpPool(const ip_pool_t &v)
 {
-    for(auto ip = v.cbegin(); ip != v.cend(); ++ip)
+    for(const auto &ip : v)
     {
-        printIp(*ip);
+        for (auto ip_part = ip.cbegin(); ip_part != ip.cend() ; ++ip_part)
+        {
+            if (ip_part != ip.cbegin())
+                std::cout << ".";
+            std::cout << *ip_part;
+        }
         std::cout << std::endl;
     }
 }
@@ -86,7 +79,6 @@ int main(int argc, char const *argv[])
         ipfiltered = filter(ip_pool, 47, 70);       // std::move implicitly, do we need to overload?
         printIpPool(ipfiltered);
         ipfiltered = filter_any(ip_pool, 46);       // std::move implicitly
-        std::cout << "===============================" << std::endl;
         printIpPool(ipfiltered);
     }
     catch(const std::exception &e)
