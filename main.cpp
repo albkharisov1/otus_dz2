@@ -86,6 +86,7 @@ int main(int argc, char const *argv[])
         ipfiltered = filter(ip_pool, 47, 70);       // std::move implicitly, do we need to overload?
         printIpPool(ipfiltered);
         ipfiltered = filter_any(ip_pool, 46);       // std::move implicitly
+        std::cout << "===============================" << std::endl;
         printIpPool(ipfiltered);
     }
     catch(const std::exception &e)

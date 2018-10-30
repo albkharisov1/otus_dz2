@@ -15,14 +15,19 @@ ip_pool_t filter_any(const ip_pool_t &ip_pool, unsigned char num)
     ip_pool_t ipf;  // filtered
     for (auto ip : ip_pool)
     {
-        for (int i = 0 ; i < 4 ; ++i)
+//        for (int i = 0 ; i < 4 ; ++i)
+//        {
+//            if (ip[i] == std::to_string(num))
+        if (std::any_of(ip.cbegin(), ip.cend(), [num](std::string s)
+                    {
+                        std::cout << "   " << std::endl;
+                        return std::stoi(s) == num;
+                    } ))
         {
-            if (ip[i] == std::to_string(num))
-            {
-                ipf.push_back(ip);
-                break;
-            }
+            ipf.push_back(ip);
+            break;
         }
+//        }
     }
     return ipf;
 }
