@@ -52,12 +52,6 @@ void printIpPool(const ip_pool_t &v)
     }
 }
 
-auto sort(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end)
-{
-
-}
-
-
 int main(int argc, char const *argv[])
 {
     (void) argc;    // suppress warnings
@@ -73,12 +67,23 @@ int main(int argc, char const *argv[])
         }
 
         // TODO reverse lexicographically sort
-        std::sort(ip_pool.rbegin(), ip_pool.rend());
+        std::sort(ip_pool.begin(), ip_pool.end(), [](const ip_t &s1, const ip_t &s2)
+                {
+                    for (size_t i = 0; i < s1.size(); ++i)
+                    {
+                        if (std::stoi(s1[i]) > std::stoi(s2[i]))
+                            return true;
+                        else if (std::stoi(s1[i]) < std::stoi(s2[i]))
+                            return false;
+                    }
+                    return false;
+                }
+            );
         printIpPool(ip_pool);
 
         auto ipfiltered = filter(ip_pool, 1);
         printIpPool(ipfiltered);
-        ipfiltered = filter(ip_pool, 46, 70);       // std::move implicitly, do we need to overload?
+        ipfiltered = filter(ip_pool, 47, 70);       // std::move implicitly, do we need to overload?
         printIpPool(ipfiltered);
         ipfiltered = filter_any(ip_pool, 46);       // std::move implicitly
         printIpPool(ipfiltered);

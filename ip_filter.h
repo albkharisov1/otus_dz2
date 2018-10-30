@@ -10,14 +10,12 @@
 using ip_t = std::vector<std::string>;
 using ip_pool_t = std::vector<ip_t>;
 
-#define IPV4_PARTS      4
-
 ip_pool_t filter_any(const ip_pool_t &ip_pool, unsigned char num)
 {
     ip_pool_t ipf;  // filtered
     for (auto ip : ip_pool)
     {
-        for (int i = 0 ; i < IPV4_PARTS ; ++i)
+        for (int i = 0 ; i < 4 ; ++i)
         {
             if (ip[i] == std::to_string(num))
             {
@@ -50,8 +48,8 @@ ip_pool_t filter(const ip_pool_t &ip_pool, Args... args)
                 rc = false;
                 break;
             }
-            if (++b > IPV4_PARTS)
-                break;
+//            if (++b > IPV4_PARTS)
+//                break;
         }
         if (rc)
             ipf.push_back(ip);
