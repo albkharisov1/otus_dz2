@@ -56,22 +56,15 @@ int main(int argc, char const *argv[])
         for(std::string line; std::getline(std::cin, line);)
         {
             auto v = split(line, '\t');
-            ip_pool.push_back(split(v.at(0), '.'));
+            auto x = split(v.at(0), '.');
+            ip_t ip;
+            ip.reserve(4);
+            std::for_each(v.begin(), v.end(), [&ip] ( const std::string &s ) { ip.push_back(std::stoi(s)); } );
+            ip_pool.push_back(ip);
         }
 
         // TODO reverse lexicographically sort
-        std::sort(ip_pool.begin(), ip_pool.end(), [](const ip_t &s1, const ip_t &s2)
-                {
-                    for (size_t i = 0; i < s1.size(); ++i)
-                    {
-                        if (std::stoi(s1[i]) > std::stoi(s2[i]))
-                            return true;
-                        else if (std::stoi(s1[i]) < std::stoi(s2[i]))
-                            return false;
-                    }
-                    return false;
-                }
-            );
+        std::sort(ip_pool.begin(), ip_pool.end());
         printIpPool(ip_pool);
 
         auto ipfiltered = filter(ip_pool, 1);

@@ -7,7 +7,7 @@
 #include <vector>
 #include <algorithm>
 
-using ip_t = std::vector<std::string>;
+using ip_t = std::vector<uint8_t>;
 using ip_pool_t = std::vector<ip_t>;
 
 ip_pool_t filter_any(const ip_pool_t &ip_pool, unsigned char num)
@@ -15,8 +15,8 @@ ip_pool_t filter_any(const ip_pool_t &ip_pool, unsigned char num)
     ip_pool_t ipf;  // filtered
     for (auto ip : ip_pool)
     {
-        if (std::any_of(ip.cbegin(), ip.cend(), [num](const std::string &s)
-                    { return std::stoi(s) == num; } ))
+        if (std::any_of(ip.cbegin(), ip.cend(), [num](unsigned char s)
+                    { return s == num; } ))
         {
             ipf.push_back(ip);
         }
@@ -37,7 +37,7 @@ ip_pool_t filter(const ip_pool_t &ip_pool, Args... args)
         int b = 0;
         for (auto j : a)
         {
-            if (std::stoi(ip[b]) != j)
+            if (ip[b] != j)
             {
                 rc = false;
                 break;
