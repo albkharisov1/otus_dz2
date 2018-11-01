@@ -76,7 +76,7 @@ int main(int argc, char const *argv[])
 
         auto ipfiltered = filter(ip_pool, 1);
         printIpPool(ipfiltered);
-        ipfiltered = filter(ip_pool, 47, 70);       // std::move implicitly, do we need to overload?
+        ipfiltered = filter(ip_pool, 46, 70);       // std::move implicitly, do we need to overload?
         printIpPool(ipfiltered);
         ipfiltered = filter_any(ip_pool, 46);       // std::move implicitly
         printIpPool(ipfiltered);
