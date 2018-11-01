@@ -64,7 +64,7 @@ int main(int argc, char const *argv[])
         }
 
         // TODO reverse lexicographically sort
-        std::sort(ip_pool.begin(), ip_pool.end());
+        std::sort(ip_pool.begin(), ip_pool.end(), std::greater<std::vector<unsigned char>>());
         printIpPool(ip_pool);
 
         std::cout << "====1=====" << std::endl;
