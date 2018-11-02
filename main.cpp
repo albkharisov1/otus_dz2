@@ -21,7 +21,6 @@ auto split(const std::string &str, char d)
     while(stop != std::string::npos)
     {
         r.push_back(str.substr(start, stop - start));
-
         start = stop + 1;
         stop = str.find_first_of(d, start);
     }
@@ -67,13 +66,10 @@ int main(int argc, char const *argv[])
         std::sort(ip_pool.begin(), ip_pool.end(), std::greater<std::vector<unsigned char>>());
         printIpPool(ip_pool);
 
-        std::cout << "====1=====" << std::endl;
         auto ipfiltered = filter(ip_pool, 1);
         printIpPool(ipfiltered);
-        std::cout << "===46.70===" << std::endl;
         ipfiltered = filter(ip_pool, 46, 70);       // std::move implicitly, do we need to overload?
         printIpPool(ipfiltered);
-        std::cout << "==any 46==" << std::endl;
         ipfiltered = filter_any(ip_pool, 46);       // std::move implicitly
         printIpPool(ipfiltered);
     }
